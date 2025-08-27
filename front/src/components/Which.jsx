@@ -6,7 +6,7 @@ const Which = () => {
   return (
     <div className="Which">
       <h1 className="which-title">Which Is My Ball?</h1>
-      <button className="start" onClick={() => nav("/form")}>
+      <button className="start" onClick={() => nav("/form", { replace: true })}>
         start
       </button>
     </div>

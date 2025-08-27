@@ -4,10 +4,18 @@ import { useNavigate } from "react-router-dom";
 const Form = () => {
   const nav = useNavigate();
   const formRef = useRef(0);
+  // 빈칸넣었을 때 alert 띄우기
+  const keyToLabel = {
+    name: "이름",
+    phone: "연락처",
+    hak: "학번",
+    type: "구분",
+  };
+
   //확인 버튼 누를 때 gameStart 함수 실행
   const gameStart = () => {
     if (formRef.current > 0) {
-      nav("/");
+      nav("/", { replace: true }); // 폼 제출 후 뒤로가기 방지
       formRef.current = 0;
     }
   };
@@ -45,10 +53,10 @@ const Form = () => {
       return;
     }
 
-    // 빈칸 검사
+    // 빈칸 검사 ||는 혹시모를 일 대비
     for (const key in data) {
       if (!data[key]) {
-        alert(`${key}을(를) 입력하세요.`);
+        alert(`${keyToLabel[key] || key}을(를) 입력하세요.`);
         return;
       }
     }
