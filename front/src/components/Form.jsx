@@ -1,8 +1,16 @@
 import "./Form.css";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 const Form = () => {
   const nav = useNavigate();
+  const formRef = useRef(0);
+  //확인 버튼 누를 때 gameStart 함수 실행
+  const gameStart = () => {
+    if (formRef.current > 0) {
+      nav("/");
+      formRef.current = 0;
+    }
+  };
 
   const handleChange = (e, type) => {
     const { name, value } = e.target;
@@ -54,10 +62,17 @@ const Form = () => {
       // });
       // if (response.ok) {
       //   alert("등록 성공!");
+      //   formRef.current +=1; // 폼에 1증가
+      //   gameStart();
       // } else {
       //   alert("등록 실패!");
       // }
       console.log("서버로 보낼 데이터:", data);
+      if (data) {
+        formRef.current += 1; // 폼에 1증가
+        console.log(formRef.current);
+        gameStart();
+      }
     } catch (err) {
       alert("서버 오류!");
     }
@@ -161,11 +176,7 @@ const Form = () => {
               />
             </div>
           )}
-          <button
-            className="form-submit-btn"
-            type="submit"
-            onClick={() => nav("/")}
-          >
+          <button className="form-submit-btn" type="submit">
             확 인
           </button>
         </form>
@@ -173,4 +184,5 @@ const Form = () => {
     </div>
   );
 };
+
 export default Form;

@@ -2,6 +2,7 @@ import "./Which.css";
 import { useNavigate } from "react-router-dom";
 const Which = () => {
   const nav = useNavigate();
+
   return (
     <div className="Which">
       <h1 className="which-title">Which Is My Ball?</h1>
