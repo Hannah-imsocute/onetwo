@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap');
+.form-container {
+  min-height: 100vh;
+  background: #f8f1de;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+
+
+.form-title {
+  font-size: 3rem;
+  color: #184422;
+  margin-bottom: 40px;
+  letter-spacing: 4px;
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.form-radio-group {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 32px;
+    font-size: 1.5rem;
+    color: #184422;
+    justify-content: center;
+}
+
+.form-radio-group label {
+    cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-family: 'Noto Sans KR', sans-serif;
+  gap: 8px;
+}
+
+.form-select,
+.form-input {
+    display: flex;
+  width: 340px;
+  font-size: 1.5rem;
+  padding: 18px 20px;
+  margin-bottom: 20px;
+  border: 4px solid #184422;
+  border-radius: 20px;
+  background: transparent;
+  color: #184422;
+  outline: none;
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR', sans-serif;
+
+}
+
+.form-select {
+  appearance: none;
+  background: transparent;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.form-submit-btn {
+  width: 340px;
+  background: #184422;
+  color: #fff;
+  font-size: 2.5rem;
+  border: none;
+  border-radius: 50px;
+  padding: 20px 0;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-items: center;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.form-title,
+.form-select,
+.form-input,
+.form-radio-group label,
+.form-submit-btn {
+  font-family: 'Nanum Gothic Coding', 'Kelly Slab', sans-serif;
+  font-weight: 400;
+}
+
+.form-submit-btn:hover {
+  background: #226633;
+}
+
