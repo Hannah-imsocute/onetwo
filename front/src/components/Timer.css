@@ -1,0 +1,24 @@
+.menubar-top {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* 시간바 */
+  .timebar {
+    top: 23px;
+    background-color: rgb(229, 217, 187);
+    border-radius: 4px;
+    overflow: hidden;
+    width: 320px;
+    height: 14px;
+    position: absolute;  
+
+  }
+  
+  /* 시간바 안 채워지는 부분 */
+  .timebar-fill {
+    height: 100%;
+    background-color:rgb(39, 140, 81);
+    transition: width 0.2s linear;
+  }
+  

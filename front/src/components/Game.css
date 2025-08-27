@@ -1,0 +1,59 @@
+.Game {
+    text-align: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    background-color: #fdf6ec;
+    min-height: 100vh;
+  }
+  
+  .stage-container {
+    position: relative; 
+    display: inline-block;
+    background-color: rgb(6, 68, 32);
+    border-radius: 15px;
+    padding: 20px;
+  }
+  
+  .stage-label {
+    position: absolute;
+    top: 13px;  
+    left: 166px;  
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 80px);
+    grid-template-rows: repeat(4, 80px);
+    gap: 10px;
+    justify-content: center;
+    margin: 30px auto 0 auto; 
+  }
+  
+  .cell {
+    background-color: #fefae0;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .cell img {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .back {
+    position: absolute;  
+    top: 3px;
+    margin-left: -220px;  
+    width: 60px;      
+    height: 60px;
+    cursor: pointer;
+  }
+  
+  img {
+    cursor: pointer;
+  }
