@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./game.css";
-
+import { useNavigate } from "react-router-dom";
 const ballImages = [
   "./img/img1.png",
   "./img/img2.png",
@@ -9,6 +9,7 @@ const ballImages = [
 ];
 
 function Game() {
+  const nav = useNavigate();
   const [balls, setBalls] = useState(generateRandomBalls());
   const [score, setScore] = useState(0); // 점수 상태
   const targetImage = ballImages[2]; // 정답 이미지 (img3)

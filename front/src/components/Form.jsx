@@ -15,7 +15,7 @@ const Form = () => {
   //확인 버튼 누를 때 gameStart 함수 실행
   const gameStart = () => {
     if (formRef.current > 0) {
-      nav("/", { replace: true }); // 폼 제출 후 뒤로가기 방지
+      nav("/game", { replace: true }); // 폼 제출 후 뒤로가기 방지
       formRef.current = 0;
     }
   };
