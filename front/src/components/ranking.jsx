@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react';
-import './App.css';
-
+import { useState, useMemo } from "react";
+import "./Ranking.css";
+//더미데이터 생성
 function generateUniquePhoneNumbers(count) {
   const set = new Set();
   while (set.size < count) {
@@ -19,8 +19,8 @@ function generateRankingData(count) {
   }));
 }
 
-export default function App() {
-  const [searchTerm, setSearchTerm] = useState('');
+export default function Ranking() {
+  const [searchTerm, setSearchTerm] = useState("");
 
   // 1000명 데이터 한 번만 생성
   const rankingData = useMemo(() => generateRankingData(1000), []);
@@ -30,7 +30,7 @@ export default function App() {
   if (searchTerm) {
     // 검색어 있으면 전체에서 정확 일치하는 플레이어만 필터링
     filteredData = rankingData.filter(
-      player => player.name.toLowerCase() === searchTerm.toLowerCase()
+      (player) => player.name.toLowerCase() === searchTerm.toLowerCase()
     );
   } else {
     // 검색어 없으면 100등까지만 보여줌
@@ -54,13 +54,15 @@ export default function App() {
       ) : (
         <ul className="ranking-list">
           {filteredData.map((player) => {
-            const originalIndex = rankingData.findIndex(p => p.id === player.id);
+            const originalIndex = rankingData.findIndex(
+              (p) => p.id === player.id
+            );
             const rank = originalIndex + 1;
 
-            let rankClass = '';
-            if (rank === 1) rankClass = 'first';
-            else if (rank === 2) rankClass = 'second';
-            else if (rank === 3) rankClass = 'third';
+            let rankClass = "";
+            if (rank === 1) rankClass = "first";
+            else if (rank === 2) rankClass = "second";
+            else if (rank === 3) rankClass = "third";
 
             return (
               <li key={player.id} className={`ranking-item ${rankClass}`}>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./game.css";
 import { useNavigate } from "react-router-dom";
+import Menubar from "./Timer";
 const ballImages = [
   "./img/img1.png",
   "./img/img2.png",
@@ -41,6 +42,7 @@ function Game() {
 
   return (
     <div className="Game">
+      <Menubar />
       <img src="./img/img5.png" alt="화살표" className="back" />
       <h1>Score : {score}</h1>
       <div className="stage-container">
