@@ -7,7 +7,7 @@ const Form = () => {
   // 빈칸넣었을 때 alert 띄우기
   const keyToLabel = {
     name: "이름",
-    phone: "연락처",
+    fullNumber: "연락처",
     hak: "학번",
     type: "구분",
   };
@@ -31,12 +31,12 @@ const Form = () => {
   const [formType, setFormType] = useState(null);
   const [studentForm, setStudentForm] = useState({
     name: "",
-    phone: "",
+    fullNumber: "",
     hak: "",
   });
   const [visitorForm, setVisitortForm] = useState({
     name: "",
-    phone: "",
+    fullNumber: "",
   });
 
   // checkReg 이해하기..
@@ -63,31 +63,31 @@ const Form = () => {
 
     // 서버로 데이터 전송
     try {
-      // const response = await fetch("http://your-backend-url/api/register", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json" },
-      //   body: JSON.stringify(data),
-      // });
-      // if (response.ok) {
-      //   alert("등록 성공!");
-      //   formRef.current +=1; // 폼에 1증가
-      //   gameStart();
-      // } else {
-      //   alert("등록 실패!");
-      // }
       console.log("서버로 보낼 데이터:", data);
-      if (data) {
+      const response = await fetch("http://192.168.0.11:8080/api/enter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        alert("등록 성공!");
         formRef.current += 1; // 폼에 1증가
-        console.log(formRef.current);
         gameStart();
+      } else {
+        alert("등록 실패!");
       }
+      // if (data) {
+      //   formRef.current += 1; // 폼에 1증가
+      //   console.log(formRef.current);
+      //   gameStart();
+      // }
     } catch (err) {
       alert("서버 오류!");
     }
 
     // form태그의 url 지정하기 (url주소는 나중에 기입)
     // 유효성검사하기 빈칸이거나 해당태그에 focus 이벤트 주고 return
-    // 해당 정보를 name, phone , hak 을 객체로 묶기 Client
+    // 해당 정보를 name, fullNumber , hak 을 객체로 묶기 Client
     // 유효성 검사 끝나면 submit 이벤트 발생시키기
   };
   // const onClickRadio = (e, setFormType) => {
@@ -144,8 +144,8 @@ const Form = () => {
                 inputmode="numeric"
                 pattern="^0\d{8,10}$"
                 placeholder="연락처"
-                name="phone"
-                value={studentForm.phone}
+                name="fullNumber"
+                value={studentForm.fullNumber}
                 onChange={(e) => handleChange(e, "student")}
               />
 
@@ -178,8 +178,8 @@ const Form = () => {
                 type="text"
                 pattern="^0\d{8,10}$"
                 placeholder="연락처(-없이 숫자만)"
-                name="phone"
-                value={visitorForm.phone}
+                name="fullNumber"
+                value={visitorForm.fullNumber}
                 onChange={(e) => handleChange(e, "visitor")}
               />
             </div>
