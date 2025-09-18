@@ -21,9 +21,9 @@ export default function Menubar({ score }) {
             },
           }
         );
-
         if (response.ok) {
           console.log("점수가 성공적으로 전송되었습니다:", finalScore);
+
           setUserInfo((prev) => ({
             ...prev,
             score: finalScore,

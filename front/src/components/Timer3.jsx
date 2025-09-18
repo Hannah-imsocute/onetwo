@@ -12,6 +12,7 @@ export default function Menubar({ score }) {
   const sendScoreToBackend = useCallback(
     async (finalScore) => {
       try {
+        console.log("전송할 데이터:", { id: userInfo.id, score: finalScore });
         const response = await fetch(
           `http://172.30.1.49:8080/api/save?id=${userInfo.id}&score=${finalScore}`,
           {

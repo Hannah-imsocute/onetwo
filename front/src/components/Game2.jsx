@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import Menuba from "./Timer";
 import "./game.css";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 const ballImages = [
   "./img/img1.png",
   "./img/img2.png",
@@ -9,15 +10,18 @@ const ballImages = [
   "./img/img4.png",
 ];
 
-function Game() {
+function Game2() {
   const [balls, setBalls] = useState(generateRandomBalls());
-  const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false); // 점수 달성 → 게임 종료
   const [timeLeft, setTimeLeft] = useState(100); // 타이머바 진행도
   const [timeOver, setTimeOver] = useState(false); // 타이머만 끝난 상태
   const targetImage = ballImages[2];
   const intervalRef = useRef(null); // 공 섞기용
   const timerRef = useRef(null); // 타이머바용
+
+  const location = useLocation();
+  const game1Score = location.state?.game1Score;
+  const [score, setScore] = useState(game1Score);
 
   const nav = useNavigate();
 
@@ -35,7 +39,7 @@ function Game() {
     if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
       setBalls(generateRandomBalls());
-    }, 1000);
+    }, 900);
   };
 
   // 타이머바 시작
@@ -52,7 +56,7 @@ function Game() {
         }
         return prev - 1;
       });
-    }, 100); // 100ms마다 1씩 줄이면 10초짜리 타이머
+    }, 85); // 100ms마다 1씩 줄이면 10초짜리 타이머
   };
 
   // 게임 시작 시
@@ -69,11 +73,11 @@ function Game() {
 
   // 점수 달성 → 게임 종료
   useEffect(() => {
-    if (score >= 50) {
+    if (score >= 150) {
       setGameOver(true);
       if (intervalRef.current) clearInterval(intervalRef.current);
       if (timerRef.current) clearInterval(timerRef.current);
-      nav("/game2", { replace: true, state: { game1Score: score } });
+      nav("/game3", { replace: true, state: { game2Score: score } });
     }
   }, [score, nav]);
 
@@ -81,9 +85,9 @@ function Game() {
     if (gameOver || timeOver) return; // 게임 끝 or 타임오버면 클릭 불가
 
     if (clickedImage === targetImage) {
-      setScore((prev) => prev + 10);
+      setScore((prev) => prev + 20);
     } else {
-      setScore((prev) => prev - 4);
+      setScore((prev) => prev - 11);
     }
 
     setBalls(generateRandomBalls());
@@ -96,6 +100,7 @@ function Game() {
   return (
     <div className="Game">
       <Menuba score={score} />
+
       <h1>Score : {score}</h1>
 
       {gameOver && <h2 className="game-over">🎉 게임 종료!</h2>}
@@ -106,7 +111,7 @@ function Game() {
       </div>
 
       <div className="stage-container">
-        <div className="stage-label">Stage 1</div>
+        <div className="stage-label">Stage 2</div>
         <div className="grid">
           {balls.map((ball, idx) => (
             <div key={idx} className="cell">
@@ -127,4 +132,4 @@ function Game() {
   );
 }
 
-export default Game;
+export default Game2;

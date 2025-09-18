@@ -1,9 +1,11 @@
 import "./Form.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UseDispatchContext, UseStateContext } from "../App";
 const Form = () => {
   const nav = useNavigate();
   const formRef = useRef(0);
+  const setUserInfo = useContext(UseDispatchContext);
   // 빈칸넣었을 때 alert 띄우기
   const keyToLabel = {
     name: "이름",
@@ -13,9 +15,9 @@ const Form = () => {
   };
 
   //확인 버튼 누를 때 gameStart 함수 실행
-  const gameStart = () => {
+  const gameinfoStart = () => {
     if (formRef.current > 0) {
-      nav("/game", { replace: true }); // 폼 제출 후 뒤로가기 방지
+      nav("/gameinfo", { replace: true }); // 폼 제출 후 뒤로가기 방지
       formRef.current = 0;
     }
   };
@@ -64,15 +66,28 @@ const Form = () => {
     // 서버로 데이터 전송
     try {
       console.log("서버로 보낼 데이터:", data);
-      const response = await fetch("http://192.168.0.11:8080/api/enter", {
+      const response = await fetch("http://172.30.1.49:8080/api/enter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
       if (response.ok) {
         alert("등록 성공!");
-        formRef.current += 1; // 폼에 1증가
-        gameStart();
+        const responseData = await response.json();
+
+        // Context에 사용자 정보 저장
+        setUserInfo({
+          id: responseData.id,
+          name: data.name,
+          fullNumber: data.fullNumber,
+          hak: data.hak || "",
+          type: data.type,
+          score: 0,
+        });
+
+        console.log("받은 id 값:", responseData.id);
+        formRef.current += 1;
+        gameinfoStart();
       } else {
         alert("등록 실패!");
       }

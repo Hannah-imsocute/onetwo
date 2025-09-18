@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import Menuba from "./Timer";
 import "./game.css";
+import { useLocation } from "react-router-dom";
 const ballImages = [
   "./img/img1.png",
   "./img/img2.png",
@@ -9,9 +9,8 @@ const ballImages = [
   "./img/img4.png",
 ];
 
-function Game() {
+function Game5() {
   const [balls, setBalls] = useState(generateRandomBalls());
-  const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false); // 점수 달성 → 게임 종료
   const [timeLeft, setTimeLeft] = useState(100); // 타이머바 진행도
   const [timeOver, setTimeOver] = useState(false); // 타이머만 끝난 상태
@@ -19,7 +18,9 @@ function Game() {
   const intervalRef = useRef(null); // 공 섞기용
   const timerRef = useRef(null); // 타이머바용
 
-  const nav = useNavigate();
+  const location = useLocation();
+  const game4Score = location.state?.game4Score;
+  const [score, setScore] = useState(game4Score);
 
   function generateRandomBalls() {
     const arr = [];
@@ -35,7 +36,7 @@ function Game() {
     if (intervalRef.current) clearInterval(intervalRef.current);
     intervalRef.current = setInterval(() => {
       setBalls(generateRandomBalls());
-    }, 1000);
+    }, 400);
   };
 
   // 타이머바 시작
@@ -52,7 +53,7 @@ function Game() {
         }
         return prev - 1;
       });
-    }, 100); // 100ms마다 1씩 줄이면 10초짜리 타이머
+    }, 50); // 100ms마다 1씩 줄이면 10초짜리 타이머
   };
 
   // 게임 시작 시
@@ -68,22 +69,14 @@ function Game() {
   }, [gameOver]);
 
   // 점수 달성 → 게임 종료
-  useEffect(() => {
-    if (score >= 50) {
-      setGameOver(true);
-      if (intervalRef.current) clearInterval(intervalRef.current);
-      if (timerRef.current) clearInterval(timerRef.current);
-      nav("/game2", { replace: true, state: { game1Score: score } });
-    }
-  }, [score, nav]);
 
   const handleClick = (clickedImage) => {
     if (gameOver || timeOver) return; // 게임 끝 or 타임오버면 클릭 불가
 
     if (clickedImage === targetImage) {
-      setScore((prev) => prev + 10);
+      setScore((prev) => prev + 125);
     } else {
-      setScore((prev) => prev - 4);
+      setScore((prev) => prev - 60);
     }
 
     setBalls(generateRandomBalls());
@@ -106,7 +99,7 @@ function Game() {
       </div>
 
       <div className="stage-container">
-        <div className="stage-label">Stage 1</div>
+        <div className="stage-label">Stage 5</div>
         <div className="grid">
           {balls.map((ball, idx) => (
             <div key={idx} className="cell">
@@ -127,4 +120,4 @@ function Game() {
   );
 }
 
-export default Game;
+export default Game5;

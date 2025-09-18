@@ -6,32 +6,38 @@ body {
   color: #064420;
 }
 
+/* 메인 랭킹 페이지 박스 - 넓고 여유 있게 */
 .ranking-page {
-  max-width: 600px;
+  max-width: 900px;
+  width: 90%;
   margin: 2rem auto;
-  padding: 1rem;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(6, 68, 32, 0.15);
+  padding: 2rem 2.5rem;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(6, 68, 32, 0.15);
+  border-top: 6px solid #064420;
 }
 
+/* 제목 (축구공 제거됨) */
 .title {
   text-align: center;
-  font-size: 2.2rem;
-  margin-bottom: 1.5rem;
-  font-weight: 700;
+  font-size: 2.4rem;
+  margin-bottom: 2rem;
+  font-weight: 800;
+  letter-spacing: 1px;
 }
 
+/* 검색 인풋 */
 .search-input {
   width: 100%;
-  padding: 0.6rem 1rem;
+  padding: 0.7rem 1rem;
   font-size: 1rem;
   border: 2px solid #064420;
   border-radius: 12px;
   outline-offset: 2px;
-  transition: border-color 0.3s ease;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
   box-sizing: border-box;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .search-input:focus {
@@ -39,6 +45,7 @@ body {
   box-shadow: 0 0 8px #0a7a33aa;
 }
 
+/* 랭킹 리스트 */
 .ranking-list {
   list-style: none;
   padding: 0;
@@ -52,60 +59,143 @@ body {
   border-radius: 12px;
   display: flex;
   align-items: center;
-  box-shadow: 0 2px 8px rgba(6, 68, 32, 0.1);
+  box-shadow: 0 4px 12px rgba(6, 68, 32, 0.1);
   transition: transform 0.2s ease;
 }
 
 .ranking-item:hover {
   transform: translateY(-3px);
+  cursor: default;
 }
 
+/* 순위 숫자 */
 .rank {
   width: 3rem;
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: 800;
   text-align: center;
 }
 
+/* 이름 */
 .name {
   flex: 1;
   margin-left: 1.5rem;
   font-size: 1.1rem;
   letter-spacing: 1px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+/* 점수 */
 .score {
   font-weight: 700;
   font-size: 1.1rem;
+  text-align: right;
+  min-width: 3rem;
 }
 
-/* 1~3등 강조 */
+/* 1~3등 강조 (축구 감성 트로피) */
 .ranking-item.first {
-  background-color: #ffd70022; /* 금빛 연한 배경 */
-  border-left: 5px solid #FFD700; /* 금색 테두리 */
+  background-color: #ffe68033;
+  border-left: 6px solid #FFD700;
   font-weight: 900;
   color: #b28704;
+  position: relative;
+}
+
+.ranking-item.first::before {
+  content: "🥇";
+  position: absolute;
+  left: -2.2rem;
+  font-size: 1.6rem;
 }
 
 .ranking-item.second {
-  background-color: #c0c0c022; /* 은빛 연한 배경 */
-  border-left: 5px solid #C0C0C0; /* 은색 테두리 */
+  background-color: #e0e0e033;
+  border-left: 6px solid #C0C0C0;
   font-weight: 900;
   color: #7d7d7d;
+  position: relative;
+}
+
+.ranking-item.second::before {
+  content: "🥈";
+  position: absolute;
+  left: -2.2rem;
+  font-size: 1.6rem;
 }
 
 .ranking-item.third {
-  background-color: #cd7f3222; /* 동색 연한 배경 */
-  border-left: 5px solid #CD7F32; /* 동색 테두리 */
+  background-color: #f4c28c33;
+  border-left: 6px solid #CD7F32;
   font-weight: 900;
   color: #854a0e;
+  position: relative;
+}
+
+.ranking-item.third::before {
+  content: "🥉";
+  position: absolute;
+  left: -2.2rem;
+  font-size: 1.6rem;
 }
 
 /* 결과 없을 때 메시지 */
 .no-results {
   text-align: center;
   font-size: 1.1rem;
-  color: #777;
+  color: #999;
   margin-top: 2rem;
   font-style: italic;
+}
+
+/* 반응형 처리 */
+@media (max-width: 480px) {
+  .ranking-page {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .ranking-item {
+    padding: 0.8rem 1rem;
+  }
+
+  .name,
+  .score {
+    font-size: 1rem;
+  }
+
+  .rank {
+    font-size: 1.2rem;
+  }
+}
+
+.end-actions {
+  display: flex;
+  justify-content: center; /* 가로 가운데 정렬 */
+  align-items: center;
+  margin-top: 2rem; /* 위쪽 여백 추가 */
+  padding: 1rem 0; /* 상하 패딩 */
+}
+
+.main-btn{
+  background-color: #064420;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 28px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  align-items: center;
+}
+
+.main-btn:hover {
+  background-color: #0a7a33;
+  transform: translateY(-2px);
 }
