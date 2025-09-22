@@ -104,12 +104,7 @@ body {
   position: relative;
 }
 
-.ranking-item.first::before {
-  content: "🥇";
-  position: absolute;
-  left: -2.2rem;
-  font-size: 1.6rem;
-}
+
 
 .ranking-item.second {
   background-color: #e0e0e033;
@@ -119,12 +114,7 @@ body {
   position: relative;
 }
 
-.ranking-item.second::before {
-  content: "🥈";
-  position: absolute;
-  left: -2.2rem;
-  font-size: 1.6rem;
-}
+
 
 .ranking-item.third {
   background-color: #f4c28c33;
@@ -134,12 +124,7 @@ body {
   position: relative;
 }
 
-.ranking-item.third::before {
-  content: "🥉";
-  position: absolute;
-  left: -2.2rem;
-  font-size: 1.6rem;
-}
+
 
 /* 결과 없을 때 메시지 */
 .no-results {

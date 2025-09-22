@@ -19,7 +19,21 @@ function Game() {
   const intervalRef = useRef(null); // 공 섞기용
   const timerRef = useRef(null); // 타이머바용
 
+  // 오디오 레퍼런스 추가
+  const correctSoundRef = useRef(null);
+  const wrongSoundRef = useRef(null);
+
   const nav = useNavigate();
+
+  // 컴포넌트 마운트 시 오디오 객체 생성
+  useEffect(() => {
+    correctSoundRef.current = new Audio("./sounds/correct.mp3"); // 정답 소리
+    wrongSoundRef.current = new Audio("./sounds/wrong.mp3"); // 오답 소리
+
+    // 볼륨 설정 (선택사항)
+    correctSoundRef.current.volume = 0.5;
+    wrongSoundRef.current.volume = 0.5;
+  }, []);
 
   function generateRandomBalls() {
     const arr = [];
@@ -29,6 +43,21 @@ function Game() {
     }
     return arr;
   }
+
+  // 소리 재생 함수
+  const playSound = (isCorrect) => {
+    try {
+      if (isCorrect) {
+        correctSoundRef.current.currentTime = 0; // 처음부터 재생
+        correctSoundRef.current.play();
+      } else {
+        wrongSoundRef.current.currentTime = 0;
+        wrongSoundRef.current.play();
+      }
+    } catch (error) {
+      console.log("소리 재생 실패:", error);
+    }
+  };
 
   // 공 섞기 타이머
   const startBallTimer = () => {
@@ -82,8 +111,10 @@ function Game() {
 
     if (clickedImage === targetImage) {
       setScore((prev) => prev + 10);
+      playSound(true); // 정답 소리
     } else {
       setScore((prev) => prev - 4);
+      playSound(false); // 오답 소리
     }
 
     setBalls(generateRandomBalls());

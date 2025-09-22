@@ -41,9 +41,12 @@ export default function Ranking() {
               const rank = index + 1; // 배열 순서대로 랭킹 부여
 
               let rankClass = "";
-              if (rank === 1) rankClass = "first";
-              else if (rank === 2) rankClass = "second";
-              else if (rank === 3) rankClass = "third";
+              if (!searchTerm) {
+                // 검색어가 없을 때만 특별 효과 적용
+                if (rank === 1) rankClass = "first";
+                else if (rank === 2) rankClass = "second";
+                else if (rank === 3) rankClass = "third";
+              }
 
               return (
                 <li
