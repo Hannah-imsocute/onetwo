@@ -111,5 +111,129 @@
   
   .start-btn:hover {
     background-color: #0a5c3f;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(6, 68, 32, 0.3);
+  }
+
+  /* 게임 데모 섹션 스타일 */
+  .game-demo-section {
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    border-radius: 25px;
+    padding: 40px 30px;
+    margin: 40px auto;
+    max-width: 900px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    border: 2px solid #e8f5e8;
+  }
+
+  .demo-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #064420;
+    margin-bottom: 35px;
+    text-align: center;
+  }
+
+  .demo-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+
+  .demo-gif-wrapper {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+  }
+
+  .demo-gif {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 20px;
+    border: 4px solid #064420;
+    box-shadow: 0 8px 20px rgba(6, 68, 32, 0.2);
+    transition: transform 0.3s ease;
+  }
+
+  .demo-gif:hover {
+    transform: scale(1.02);
+  }
+
+  .demo-description {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .demo-step {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+  }
+
+  .demo-step:hover {
+    transform: translateX(10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    background: linear-gradient(135deg, #064420, #0a5c3f);
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .demo-step p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.5;
+  }
+
+  /* 반응형 디자인 */
+  @media (max-width: 768px) {
+    .demo-container {
+      flex-direction: column;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .demo-gif {
+      max-width: 100%;
+    }
+
+    .demo-description {
+      width: 100%;
+    }
+
+    .demo-step {
+      padding: 12px 15px;
+    }
+
+    .demo-step p {
+      font-size: 14px;
+    }
+
+    .step-number {
+      width: 30px;
+      height: 30px;
+      font-size: 14px;
+    }
   }
   

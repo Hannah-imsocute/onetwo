@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./gameinfo.css";
+import gameex from "../img/gameex.gif";
 
 const targetBall = "./img/img3.png"; // Game.js의 targetImage와 동일하게 맞추세요
 
@@ -29,7 +30,7 @@ function GameInfo() {
 
       {/* 정답 공 안내 */}
       <div className="target-box">
-        <p className="target-label">이번 스테이지의 정답 공</p>
+        <p className="target-label">스테이지의 정답 공</p>
         <img src={targetBall} alt="정답 공" className="target-ball" />
       </div>
 
@@ -84,6 +85,14 @@ function GameInfo() {
             </tr>
           </tbody>
         </table>
+      </div>
+
+      {/* 게임 예시 섹션 */}
+      <div className="game-demo-section">
+        <h2 className="demo-title">게임예시</h2>
+        <div className="demo-gif-wrapper">
+          <img src={gameex} alt="게임 플레이 예시" className="demo-gif" />
+        </div>
       </div>
 
       <button className="start-btn" onClick={() => nav("/game")}>
